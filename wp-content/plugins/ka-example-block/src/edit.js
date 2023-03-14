@@ -30,9 +30,15 @@ import "./editor.scss";
  * @return {WPElement} Element to render.
  */
 export default function Edit() {
+	const blockProps = useBlockProps();
 	return (
-		<p {...useBlockProps()}>
-			{__("Kinsta Academy Block – hello from the editor!", "ka-example-block")}
-		</p>
+		<RichText
+			{...blockProps}
+			tagName="p"
+			onChange={onChangeContent}
+			allowedFormats={["core/bold", "core/italic"]}
+			value={attributes.content}
+			placeholder={__("Write your text...")}
+		/>
 	);
 }
