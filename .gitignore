@@ -117,4 +117,4 @@ build/
 # !wp-content/themes/mydreamtheme/
 
 # node-modules and build directories will be ignored (see settings above)
-# !wp-content/plugins/my-first-gutenberg-app/
+!wp-content/plugins/ka-example-block

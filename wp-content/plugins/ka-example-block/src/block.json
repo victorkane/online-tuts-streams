@@ -1,0 +1,17 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 2,
+	"name": "ka-example-block/ka-example-block",
+	"version": "0.1.0",
+	"title": "Kinsta Academy Block",
+	"category": "widgets",
+	"icon": "superhero-alt",
+	"description": "An example block for Kinsta Academy students",
+	"supports": {
+		"html": false
+	},
+	"textdomain": "ka-example-block",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css"
+}
