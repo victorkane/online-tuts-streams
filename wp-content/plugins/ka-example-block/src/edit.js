@@ -16,6 +16,8 @@ import {
 	RichText,
 	AlignmentControl,
 	BlockControls,
+	InspectorControls,
+	PanelColorSettings,
 } from "@wordpress/block-editor";
 
 /**
@@ -36,6 +38,8 @@ import "./editor.scss";
  */
 export default function Edit({ attributes, setAttributes }) {
 	const blockProps = useBlockProps();
+	const { content, align, backgroundColor, textColor } = attributes;
+
 	const onChangeContent = (newContent) => {
 		setAttributes({ content: newContent });
 	};
@@ -43,20 +47,48 @@ export default function Edit({ attributes, setAttributes }) {
 		setAttributes({ align: newAlign === undefined ? "none" : newAlign });
 	};
 
+	const onChangeBackgroundColor = (newBackgroundColor) => {
+		setAttributes({ backgroundColor: newBackgroundColor });
+	};
+
+	const onChangeTextColor = (newTextColor) => {
+		setAttributes({ textColor: newTextColor });
+	};
+
 	return (
 		<>
+			<InspectorControls>
+				<PanelColorSettings
+					title={__("Color settings", "ka_example_block")}
+					initialOpen={false}
+					colorSettings={[
+						{
+							value: textColor,
+							onChange: onChangeTextColor,
+							label: __("Text color", "ka_example_block"),
+						},
+						{
+							value: backgroundColor,
+							onChange: onChangeBackgroundColor,
+							label: __("Background color", "ka_example_block"),
+						},
+					]}
+				/>
+			</InspectorControls>
 			<BlockControls>
-				<AlignmentControl value={attributes.align} onChange={onChangeAlign} />
+				<AlignmentControl value={align} onChange={onChangeAlign} />
 			</BlockControls>
 			<RichText
 				{...blockProps}
 				tagName="p"
 				onChange={onChangeContent}
 				allowedFormats={["core/bold", "core/italic"]}
-				value={attributes.content}
+				value={content}
 				placeholder={__("Write your text...")}
 				style={{
-					textAlign: attributes.align,
+					textAlign: align,
+					backgroundColor: backgroundColor,
+					color: textColor,
 				}}
 			/>
 		</>

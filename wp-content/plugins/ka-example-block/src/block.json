@@ -19,6 +19,12 @@
 		"align": {
 			"type": "string",
 			"default": "none"
+		},
+		"backgroundColor": {
+			"type": "string"
+		},
+		"textColor": {
+			"type": "string"
 		}
 	},
 	"textdomain": "ka-example-block",
