@@ -29,7 +29,7 @@ import "./editor.scss";
  *
  * @return {WPElement} Element to render.
  */
-export default function Edit(attributes, setAttributes) {
+export default function Edit({ attributes, setAttributes }) {
 	const blockProps = useBlockProps();
 	const onChangeContent = (newContent) => {
 		setAttributes({ content: newContent });
