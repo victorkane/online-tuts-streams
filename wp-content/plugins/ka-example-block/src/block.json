@@ -15,6 +15,10 @@
 			"type": "string",
 			"source": "html",
 			"selector": "p"
+		},
+		"align": {
+			"type": "string",
+			"default": "none"
 		}
 	},
 	"textdomain": "ka-example-block",
