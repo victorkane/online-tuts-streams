@@ -86,7 +86,7 @@ export default function Edit({ attributes, setAttributes }) {
 	};
 
 	return (
-		<div {...blockProps}>
+		<div {...blockProps} style={{ backgroundColor: backgroundColor }}>
 			<InspectorControls>
 				<PanelColorSettings
 					title={__("Color settings", "ka_example_block")}
@@ -151,7 +151,6 @@ export default function Edit({ attributes, setAttributes }) {
 				placeholder={__("Write your text...")}
 				style={{
 					textAlign: align,
-					backgroundColor: backgroundColor,
 					color: textColor,
 				}}
 			/>

@@ -28,13 +28,12 @@ export default function save({ attributes }) {
 	} = attributes;
 
 	return (
-		<div {...blockProps}>
+		<div {...blockProps} style={{ backgroundColor: backgroundColor }}>
 			<RichText.Content
 				tagName="p"
 				value={content}
 				style={{
 					textAlign: align,
-					backgroundColor: backgroundColor,
 					color: textColor,
 				}}
 			/>
