@@ -17,18 +17,36 @@ import { useBlockProps, RichText } from "@wordpress/block-editor";
  */
 export default function save({ attributes }) {
 	const blockProps = useBlockProps.save();
-	const { content, align, backgroundColor, textColor } = attributes;
+	const {
+		content,
+		align,
+		backgroundColor,
+		textColor,
+		kaLink,
+		linkLabel,
+		hasLinkNofollow,
+	} = attributes;
 
 	return (
-		<RichText.Content
-			{...blockProps}
-			tagName="p"
-			value={content}
-			style={{
-				textAlign: align,
-				backgroundColor: backgroundColor,
-				color: textColor,
-			}}
-		/>
+		<div {...blockProps}>
+			<RichText.Content
+				tagName="p"
+				value={content}
+				style={{
+					textAlign: align,
+					backgroundColor: backgroundColor,
+					color: textColor,
+				}}
+			/>
+			<p>
+				<a
+					href={kaLink}
+					className="ka-button"
+					rel={hasLinkNofollow ? "nofollow" : "noopener noreferrer"}
+				>
+					{linkLabel}
+				</a>
+			</p>
+		</div>
 	);
 }

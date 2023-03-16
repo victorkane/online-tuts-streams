@@ -25,6 +25,18 @@
 		},
 		"textColor": {
 			"type": "string"
+		},
+		"kaLink": {
+			"type": "string",
+			"default": ""
+		},
+		"linkLabel": {
+			"type": "string",
+			"default": "Check it out!"
+		},
+		"hasLinkNofollow": {
+			"type": "boolean",
+			"default": false
 		}
 	},
 	"textdomain": "ka-example-block",

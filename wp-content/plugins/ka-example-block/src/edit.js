@@ -20,6 +20,14 @@ import {
 	PanelColorSettings,
 } from "@wordpress/block-editor";
 
+import {
+	TextControl,
+	PanelBody,
+	PanelRow,
+	ToggleControl,
+	ExternalLink,
+} from "@wordpress/components";
+
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
  * Those files can contain any CSS code that gets applied to the editor.
@@ -38,7 +46,15 @@ import "./editor.scss";
  */
 export default function Edit({ attributes, setAttributes }) {
 	const blockProps = useBlockProps();
-	const { content, align, backgroundColor, textColor } = attributes;
+	const {
+		content,
+		align,
+		backgroundColor,
+		textColor,
+		kaLink,
+		linkLabel,
+		hasLinkNofollow,
+	} = attributes;
 
 	const onChangeContent = (newContent) => {
 		setAttributes({ content: newContent });
@@ -55,8 +71,22 @@ export default function Edit({ attributes, setAttributes }) {
 		setAttributes({ textColor: newTextColor });
 	};
 
+	const onChangeKaLink = (newKaLink) => {
+		setAttributes({ kaLink: newKaLink === undefined ? "" : newKaLink });
+	};
+
+	const onChangeLinkLabel = (newLinkLabel) => {
+		setAttributes({
+			linkLabel: newLinkLabel === undefined ? "" : newLinkLabel,
+		});
+	};
+
+	const toggleNofollow = () => {
+		setAttributes({ hasLinkNofollow: !hasLinkNofollow });
+	};
+
 	return (
-		<>
+		<div {...blockProps}>
 			<InspectorControls>
 				<PanelColorSettings
 					title={__("Color settings", "ka_example_block")}
@@ -75,11 +105,45 @@ export default function Edit({ attributes, setAttributes }) {
 					]}
 				/>
 			</InspectorControls>
+			<PanelBody
+				title={__("Link settings", "ka_example_block")}
+				initialOpen={true}
+			>
+				<PanelRow>
+					<fieldset>
+						<TextControl
+							label={__("KA link", "ka_example_block")}
+							value={kaLink}
+							onChange={onChangeKaLink}
+							help={__("Add your Academy Link", "ka_example_block")}
+						/>
+					</fieldset>
+				</PanelRow>
+				<PanelRow>
+					<fieldset>
+						<TextControl
+							label={__("Link label", "ka_example_block")}
+							value={linkLabel}
+							onChange={onChangeLinkLabel}
+							help={__("Add link label", "ka_example_block")}
+						/>
+					</fieldset>
+				</PanelRow>
+				<PanelRow>
+					<fieldset>
+						<ToggleControl
+							label="Add rel = nofollow"
+							help={hasLinkNofollow ? "Has rel nofollow" : "No rel nofollow"}
+							checked={hasLinkNofollow}
+							onChange={toggleNofollow}
+						/>
+					</fieldset>
+				</PanelRow>
+			</PanelBody>
 			<BlockControls>
 				<AlignmentControl value={align} onChange={onChangeAlign} />
 			</BlockControls>
 			<RichText
-				{...blockProps}
 				tagName="p"
 				onChange={onChangeContent}
 				allowedFormats={["core/bold", "core/italic"]}
@@ -91,6 +155,13 @@ export default function Edit({ attributes, setAttributes }) {
 					color: textColor,
 				}}
 			/>
-		</>
+			<ExternalLink
+				href={kaLink}
+				className="ka-button"
+				rel={hasLinkNofollow ? "nofollow" : ""}
+			>
+				{linkLabel}
+			</ExternalLink>
+		</div>
 	);
 }
