@@ -45,7 +45,6 @@ import "./editor.scss";
  * @return {WPElement} Element to render.
  */
 export default function Edit({ attributes, setAttributes }) {
-	const blockProps = useBlockProps();
 	const {
 		content,
 		align,
@@ -62,6 +61,10 @@ export default function Edit({ attributes, setAttributes }) {
 	const onChangeAlign = (newAlign) => {
 		setAttributes({ align: newAlign === undefined ? "none" : newAlign });
 	};
+
+	const blockProps = useBlockProps({
+		className: `has-text-align-${align}`,
+	});
 
 	const onChangeBackgroundColor = (newBackgroundColor) => {
 		setAttributes({ backgroundColor: newBackgroundColor });

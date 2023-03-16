@@ -16,7 +16,6 @@ import { useBlockProps, RichText } from "@wordpress/block-editor";
  * @return {WPElement} Element to render.
  */
 export default function save({ attributes }) {
-	const blockProps = useBlockProps.save();
 	const {
 		content,
 		align,
@@ -26,6 +25,10 @@ export default function save({ attributes }) {
 		linkLabel,
 		hasLinkNofollow,
 	} = attributes;
+
+	const blockProps = useBlockProps.save({
+		className: `has-text-align-${align}`,
+	});
 
 	return (
 		<div {...blockProps} style={{ backgroundColor: backgroundColor }}>
