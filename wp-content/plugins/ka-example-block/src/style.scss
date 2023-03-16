@@ -9,4 +9,12 @@
 	background-color: #21759b;
 	color: #fff;
 	padding: 2px;
+
+	&.is-style-default {
+		border: 0;
+	}
+
+	&.is-style-border {
+		border: 2px solid #ff0000;
+	}
 }
