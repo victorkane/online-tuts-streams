@@ -104,42 +104,42 @@ export default function Edit({ attributes, setAttributes }) {
 						},
 					]}
 				/>
+				<PanelBody
+					title={__("Link settings", "ka_example_block")}
+					initialOpen={true}
+				>
+					<PanelRow>
+						<fieldset>
+							<TextControl
+								label={__("KA link", "ka_example_block")}
+								value={kaLink}
+								onChange={onChangeKaLink}
+								help={__("Add your Academy Link", "ka_example_block")}
+							/>
+						</fieldset>
+					</PanelRow>
+					<PanelRow>
+						<fieldset>
+							<TextControl
+								label={__("Link label", "ka_example_block")}
+								value={linkLabel}
+								onChange={onChangeLinkLabel}
+								help={__("Add link label", "ka_example_block")}
+							/>
+						</fieldset>
+					</PanelRow>
+					<PanelRow>
+						<fieldset>
+							<ToggleControl
+								label="Add rel = nofollow"
+								help={hasLinkNofollow ? "Has rel nofollow" : "No rel nofollow"}
+								checked={hasLinkNofollow}
+								onChange={toggleNofollow}
+							/>
+						</fieldset>
+					</PanelRow>
+				</PanelBody>
 			</InspectorControls>
-			<PanelBody
-				title={__("Link settings", "ka_example_block")}
-				initialOpen={true}
-			>
-				<PanelRow>
-					<fieldset>
-						<TextControl
-							label={__("KA link", "ka_example_block")}
-							value={kaLink}
-							onChange={onChangeKaLink}
-							help={__("Add your Academy Link", "ka_example_block")}
-						/>
-					</fieldset>
-				</PanelRow>
-				<PanelRow>
-					<fieldset>
-						<TextControl
-							label={__("Link label", "ka_example_block")}
-							value={linkLabel}
-							onChange={onChangeLinkLabel}
-							help={__("Add link label", "ka_example_block")}
-						/>
-					</fieldset>
-				</PanelRow>
-				<PanelRow>
-					<fieldset>
-						<ToggleControl
-							label="Add rel = nofollow"
-							help={hasLinkNofollow ? "Has rel nofollow" : "No rel nofollow"}
-							checked={hasLinkNofollow}
-							onChange={toggleNofollow}
-						/>
-					</fieldset>
-				</PanelRow>
-			</PanelBody>
 			<BlockControls>
 				<AlignmentControl value={align} onChange={onChangeAlign} />
 			</BlockControls>
