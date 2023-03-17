@@ -1,0 +1,18 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 2,
+	"name": "meta-fields/metadata-block",
+	"version": "0.1.0",
+	"title": "Meta Fields",
+	"category": "widgets",
+	"icon": "book",
+	"description": "Block Description",
+	"supports": {
+		"html": false
+	},
+	"textdomain": "metadata-block",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php"
+}
