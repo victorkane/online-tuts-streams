@@ -33,7 +33,9 @@ function meta_fields_add_meta_box(){
 		'meta_fields_build_meta_box_callback', 
 		'post',
 		'side',
-		'default'
+		'default',
+		// hide the meta box in Gutenberg
+		array('__back_compat_meta_box' => true)
 	 );
 }
 
