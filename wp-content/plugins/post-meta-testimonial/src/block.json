@@ -5,11 +5,26 @@
 	"version": "0.1.0",
 	"title": "Post Meta Testimonial",
 	"category": "text",
-	"icon": "smiley",
+	"icon": "format-quote",
 	"description": "A block quote style testimonial that saves to post meta.",
 	"supports": {
 		"html": false
 	},
+	"example": {
+		"attributes": {
+			"authorName": "WordPress",
+			"authorURL": "developer.wordpress.org/news"
+		}
+	},
+	"attributes": {
+		"authorName": {
+			"type": "string"
+		},
+		"authorURL": {
+			"type": "string"
+		}
+	},
+	"usesContext": ["postId", "postType"],
 	"textdomain": "post-meta-testimonial",
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",
