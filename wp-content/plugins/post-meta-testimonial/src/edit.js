@@ -30,7 +30,7 @@ import "./editor.scss";
  * @return {WPElement} Element to render.
  */
 export default function Edit({
-	attributes,
+	attributes: { authorName, authorURL },
 	setAttributes,
 	context: { postType, postId },
 }) {
