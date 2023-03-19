@@ -11,7 +11,7 @@ import { __ } from "@wordpress/i18n";
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
-import { useBlockProps } from "@wordpress/block-editor";
+import { useBlockProps, RichText } from "@wordpress/block-editor";
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -29,15 +29,37 @@ import "./editor.scss";
  *
  * @return {WPElement} Element to render.
  */
-export default function Edit() {
+export default function Edit({
+	attributes,
+	setAttributes,
+	context: { postType, postId },
+}) {
 	return (
 		<blockquote {...useBlockProps()}>
 			<p>Testimonial will go here</p>
 			<cite>
-				<span>Author Name</span>
+				<RichText
+					tagName="span"
+					placeholder={__("Author name", "tutorial")}
+					allowedFormats={[]}
+					disableLineBreaks
+					value={authorName}
+					onChange={(newAuthorName) =>
+						setAttributes({ authorName: newAuthorName })
+					}
+				/>
 				<br />
 				<span>
-					<a href="#">Author URL</a>
+					<RichText
+						tagName="a"
+						placeholder={__("Author URL", "tutorial")}
+						allowedFormats={[]}
+						disableLineBreaks
+						value={authorURL}
+						onChange={(newAuthorURL) =>
+							setAttributes({ authorURL: newAuthorURL })
+						}
+					/>
 				</span>
 			</cite>
 		</blockquote>
