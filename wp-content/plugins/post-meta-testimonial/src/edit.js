@@ -22,6 +22,11 @@ import { useBlockProps, RichText } from "@wordpress/block-editor";
 import "./editor.scss";
 
 /**
+ * Gain access to the post meta for the current post
+ */
+import { useEntityProp } from "@wordpress/core-data";
+
+/**
  * The edit function describes the structure of your block in the context of the
  * editor. This represents what the editor will render when the block is used.
  *
@@ -34,9 +39,26 @@ export default function Edit({
 	setAttributes,
 	context: { postType, postId },
 }) {
+	const [meta, updateMeta] = useEntityProp(
+		"postType",
+		"product",
+		"meta",
+		postId
+	);
+	const { testimonial } = meta;
 	return (
 		<blockquote {...useBlockProps()}>
-			<p>Testimonial will go here</p>
+			<RichText
+				placeholder={__("Testimonial goes here", "tutorial")}
+				tagName="p"
+				value={testimonial}
+				onChange={(newTestimonialContent) =>
+					updateMeta({
+						...meta,
+						testimonial: newTestimonialContent,
+					})
+				}
+			/>
 			<cite>
 				<RichText
 					tagName="span"
