@@ -119,3 +119,4 @@ build/
 # node-modules and build directories will be ignored (see settings above)
 !wp-content/plugins/ka-example-block
 !wp-content/plugins/metadata-block
+!wp-content/plugins/post-meta-testimonial
