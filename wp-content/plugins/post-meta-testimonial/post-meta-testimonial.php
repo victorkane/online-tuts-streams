@@ -22,5 +22,34 @@
  */
 function tutorial_post_meta_testimonial_block_init() {
 	register_block_type( __DIR__ . '/build' );
+  register_post_type(
+	  'product',
+	  array(
+		  'labels'       => array(
+			  'name'          => __( 'Products', 'tutorial' ),
+			  'singular_name' => __( 'Product', 'tutorial' ),
+		  ),
+		  'public'       => true,
+		  'has_archive'  => true,
+		  'show_in_rest' => true,
+		  'supports'     => array(
+			  'title',
+			  'editor',
+			  'thumbnail',
+			  'excerpt',
+			  'custom-fields',
+		  ),
+	  )
+  );
+	register_post_meta(
+	  'product',
+	  'testimonial',
+	  array(
+		  'show_in_rest'       => true,
+		  'single'             => true,
+		  'type'               => 'string',
+		  'sanitize_callback'  => 'wp_kses_post',
+	  )
+  );
 }
 add_action( 'init', 'tutorial_post_meta_testimonial_block_init' );
